@@ -1,18 +1,27 @@
-# # encoding: utf-8
-
-# Inspec test for recipe apache::default
-
-# The Inspec reference, with examples and extensive documentation, can be
-# found at http://inspec.io/docs/reference/resources/
-
-unless os.windows?
-  # This is an example test, replace with your own test.
-  describe user('root'), :skip do
-    it { should exist }
-  end
+#Le user root doit exister
+describe user('root') do
+  it { should exist }
 end
 
-# This is an example test, replace it with your own test.
-describe port(80), :skip do
-  it { should_not be_listening }
+#Le user apache doit exister
+describe user('apache') do
+  it { should exist }
 end
+
+#Verifier que httpd est enables
+describe service('httpd.service') do
+  it { be_running }
+end
+
+
+#Le port 80 doit etre ouvert
+describe port(80) do
+  it { should be_listening }
+end
+
+#Verifier que le folder apache par default est present
+describe directory("/var/www") do
+	it { should exist }
+end
+
+
