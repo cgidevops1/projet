@@ -13,6 +13,11 @@ describe service('httpd.service') do
   it { be_running }
 end
 
+#Verifier que httpd est enables
+describe service('firewalld') do
+  it { should_not be_running }
+end
+
 
 #Le port 80 doit etre ouvert
 describe port(80) do
@@ -23,5 +28,6 @@ end
 describe directory("/var/www") do
 	it { should exist }
 end
+
 
 
