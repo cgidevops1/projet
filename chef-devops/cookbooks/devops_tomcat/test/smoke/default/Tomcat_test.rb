@@ -17,7 +17,7 @@ control 'tomcat-control' do
 
   unless os.windows?
     # This is an example test, replace with your own test.
-    describe user('root'), :skip do
+    describe user('root') do
       it { should exist }
     end
   end
@@ -48,7 +48,7 @@ control 'tomcat-control' do
   end
 
   # This is an example test, replace it with your own test.
-  describe port(8080), :skip do
+  describe port(8080) do
     it { should be_listening }
   end
 end
