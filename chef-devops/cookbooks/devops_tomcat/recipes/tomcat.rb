@@ -46,12 +46,9 @@ end
 template '/etc/systemd/system/tomcat.service'do
   source 'tomcat_service.erb'
 end
-#restart des service
+#restart des services
 execute 'systemctl daemon-reload'
 # start le service tomcat
 service 'tomcat' do
     action [ :start, :enable ]
 end
-#ajout des exception dans le firewall
-execute 'firewall-cmd --zone=public --permanent --add-port=8080/tcp'
-execute 'firewall-cmd --reload'
