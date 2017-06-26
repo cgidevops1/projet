@@ -22,7 +22,7 @@ control 'tomcat-control' do
     end
   end
 
-  describe package("java-1.8.0-openjdk.x86_64") do
+  describe package("java-1.8.0-openjdk") do
    it { should be_installed }
   end
 
@@ -32,12 +32,13 @@ control 'tomcat-control' do
 
   describe user('tomcat') do
    it { should exist }
-   its('group') { should eq 'root' }
+   its('group') { should eq 'tomcat' }
    its('shell') { should eq '/bin/nologin' }
   end
 
   describe directory('/opt/tomcat') do
-    it { should be_owned_by "tomcat" }
+    it { should be_owned_by "root" }
+    it { should be_grouped_into 'tomcat' }
     its('mode') { should cmp '0755' }
   end
 
@@ -48,6 +49,6 @@ control 'tomcat-control' do
 
   # This is an example test, replace it with your own test.
   describe port(8080), :skip do
-    it { should_not be_listening }
+    it { should be_listening }
   end
 end
