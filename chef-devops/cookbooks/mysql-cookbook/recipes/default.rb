@@ -13,3 +13,8 @@ mysql_service 'foo' do
   initial_root_password 'changeMe'
   action [:create, :start]
 end
+
+include_recipe "::adddataBD"
+
+
+#include_recipe "mysqlfirewall"
