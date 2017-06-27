@@ -7,15 +7,25 @@
 ##    https://github.com/mwrock/chef_workstation
 ##    https://github.com/Nordstrom/chefdk_bootstrap
 
+## Ignore git from chef repo
+chef-devops/.git/
+
+## Exclude all recipes
+chef-devops/cookbooks/*/.git
+
+## Exclude automated file from chef command
+chef-devops/*README.md
+chef-devops/*LICENCE
+chef-devops/*example/
 
 ## Ignore Chef related files and secrets
-.chef
-.chef/*.pem
-.chef/encrypted_data_bag_secret
+chef-devops/.chef
+chef-devops/.chef/*.pem
+chef-devops/.chef/encrypted_data_bag_secret
 
 ## Ignore Chef-Zero files
-clients
-nodes
+chef-devops/clients
+chef-devops/nodes
 
 # ## OS junk files
 # [Tt]humbs.db
@@ -28,16 +38,16 @@ nodes
 # !cookbooks/chef_workstation
 
 # ##Chef
-# .kitchen/
-# .vagrant
-# nodes
-# metadata.json
+*.kitchen/
+*.vagrant
+nodes
+metadata.json
 
 # ##ruby
 # *.gem
 # Gemfile
 # Gemfile.lock
-.rake_test_cache
+chef-devops/.rake_test_cache
 
 # ## Rails Heroku and other bits to ignore
 # *.log
