@@ -20,7 +20,7 @@ end
 
 #wget http://www-us.apache.org/dist/tomcat/tomcat-8/v8.5.15/bin/apache-tomcat-8.5.15.tar.gz
 remote_file 'apache-tomcat-8.5.15.tar.gz' do
-  source 'http://www-us.apache.org/dist/tomcat/tomcat-8/v8.5.15/bin/apache-tomcat-8.5.15.tar.gz'
+  source 'http://archive.apache.org/dist/tomcat/tomcat-8/v8.5.15/bin/apache-tomcat-8.5.15.tar.gz'
 end
 # create directory /opt/tomcat
 directory '/opt/tomcat' do
