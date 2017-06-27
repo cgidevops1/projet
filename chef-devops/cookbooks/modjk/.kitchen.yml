@@ -1,0 +1,25 @@
+---
+driver:
+  name: vagrant
+  network:
+    - ["private_network", {ip: "192.168.41.41"}]
+
+provisioner:
+  name: chef_zero
+  always_update_cookbooks: true
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: bento/centos-7.3
+
+suites:
+  - name: default
+    data_bags_path: test/fixtures/default/data_bags
+    run_list:
+      - recipe[modjk::default]
+    verifier:
+      inspec_tests:
+        - test/smoke/default
+    attributes:
