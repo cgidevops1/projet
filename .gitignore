@@ -1,7 +1,3 @@
-chef-devops/.git/
-
-
-
 ## Below are example of common git excludes.
 ## Please note that /cookbooks folder is ignored. This allows users to
 ## clone individual cookbooks into the /cookbook folder of the chef repo
@@ -11,17 +7,15 @@ chef-devops/.git/
 ##    https://github.com/mwrock/chef_workstation
 ##    https://github.com/Nordstrom/chefdk_bootstrap
 
-## Exclude all recipes
-chef-devops/cookbooks/*/.git
 
 ## Ignore Chef related files and secrets
-chef-devops/.chef
-chef-devops/.chef/*.pem
-chef-devops/.chef/encrypted_data_bag_secret
+.chef
+.chef/*.pem
+.chef/encrypted_data_bag_secret
 
 ## Ignore Chef-Zero files
-chef-devops/clients
-chef-devops/nodes
+clients
+nodes
 
 # ## OS junk files
 # [Tt]humbs.db
@@ -43,7 +37,7 @@ chef-devops/nodes
 # *.gem
 # Gemfile
 # Gemfile.lock
-chef-devops/.rake_test_cache
+.rake_test_cache
 
 # ## Rails Heroku and other bits to ignore
 # *.log
