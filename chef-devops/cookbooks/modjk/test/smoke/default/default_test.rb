@@ -14,6 +14,10 @@ control "modjk" do
   '
   tag "apache", "tomcat", "modjk"
 
+  describe package('httpd-devel') do
+    it { should be_installed }
+  end
+
   describe package('gcc') do
     it { should be_installed }
   end
@@ -34,13 +38,13 @@ control "modjk" do
     it { should be_executable }
   end
 
-  describe bash('libtool') do
-    it { should exist }
-  end
-
-  describe bash('find / -name tomcat-connector-1.2.42-src.tar.gz') do
-    its('stdout') { should match "*tomcat-connector-1.2.42-src.tar.gz" }
-  end
+  # describe bash('libtool') do
+  #   it { should exist }
+  # end
+  #
+  # describe bash('find / -name tomcat-connector-1.2.42-src.tar.gz') do
+  #   its('stdout') { should match "*tomcat-connector-1.2.42-src.tar.gz" }
+  # end
 
   describe file('/etc/httpd/modules/mod_jk.so') do
     it { should exist }
