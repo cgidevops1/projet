@@ -89,7 +89,7 @@ control 'Apache_configuration' do
     it { be_running }
   end
 
-  describe http('http://localhost/sakila') do
+  describe http('http://localhost/sakila/test.jsp') do
     its('status') { should cmp 200 }
   end
 end

@@ -11,12 +11,8 @@ template '/etc/httpd/conf.modules.d/mod_jk.conf' do
   mode 00644
 end
 
-<<<<<<< HEAD
-template '/etc/httpd/conf.d/workers.properties' do
-=======
 template '/etc/httpd/conf/workers.properties' do
->>>>>>> connectApache
-  variables tomcatIP: '192.168.20.24', tomcatPort: '8009'
+  variables tomcatIP: '172.0.0.1', tomcatPort: '8009'
   source 'workers.properties.erb'
   owner 'root'
   group 'root'
@@ -36,15 +32,15 @@ end
  end
 
 file '/var/log/httpd/mod_jk.shm' do
-  owner 'root'
-  group 'root'
+  owner 'www-data'
+  group 'www-data'
   mode 00755
   action :create
 end
 
 file '/var/log/httpd/mod_jk.log' do
-  owner 'root'
-  group 'root'
+  owner 'www-data'
+  group 'www-data'
   mode 00755
   action :create
 end
