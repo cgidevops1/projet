@@ -10,5 +10,5 @@
 
 include_recipe '::installMySQL'
 include_recipe '::adddataBD'
-#include_recipe '::mysqlfirewall'
+include_recipe '::mysqlfirewall'
 include_recipe '::userMySQL-Database'
