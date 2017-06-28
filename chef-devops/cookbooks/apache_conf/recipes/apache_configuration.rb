@@ -12,6 +12,7 @@ template '/etc/httpd/conf.d/mod_jk.conf' do
 end
 
 template '/etc/httpd/conf.d/workers.properties' do
+  variables tomcatIP: '192.168.20.24', tomcatPort: '8009'
   source 'workers.properties.erb'
   owner 'root'
   group 'root'
