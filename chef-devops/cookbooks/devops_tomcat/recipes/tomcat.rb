@@ -4,7 +4,7 @@
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
 #installation de java
-package 'java-1.8.0-openjdk.x86_64'do
+package 'java-1.8.0-openjdk-devel'do
 end
 
 # sudo groupadd tomcat
