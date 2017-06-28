@@ -50,6 +50,10 @@ control "apache" do
   describe directory("/var/www") do
   	it { should exist }
   end
+
+  describe http('http://localhost/') do
+    its('status') { should cmp 200 }
+  end
 end
 
 control 'Apache_configuration' do
@@ -61,11 +65,11 @@ control 'Apache_configuration' do
   '
   tag 'apache_conf', 'apache configuration', "server"
 
-  describe file('/etc/httpd/conf.d/mod_jk.conf') do
+  describe file('/etc/httpd/conf.modules.d/mod_jk.conf') do
     it { should exist }
   end
 
-  describe file('/etc/httpd/conf.d/workers.properties') do
+  describe file('/etc/httpd/conf/workers.properties') do
     it { should exist }
   end
 
@@ -83,5 +87,9 @@ control 'Apache_configuration' do
 
   describe service('firewalld') do
     it { be_running }
+  end
+
+  describe http('http://localhost/sakila') do
+    its('status') { should cmp 200 }
   end
 end

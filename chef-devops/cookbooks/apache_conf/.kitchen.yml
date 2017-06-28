@@ -23,3 +23,20 @@ suites:
       inspec_tests:
         - test/smoke/default
     attributes:
+  - name: apachetomcat
+    run_list:
+      - recipe[apache_conf::default]
+      - recipe[tomcat-config::default]
+    verifier:
+      inspec_tests:
+        - test/smoke/default
+    attributes:
+  - name: apachetomcatmysql
+    run_list:
+      - recipe[apache_conf::default]
+      - recipe[tomcat-config::default]
+      - recipe[mysql-cookbook::default]
+    verifier:
+      inspec_tests:
+        - test/smoke/default
+    attributes:

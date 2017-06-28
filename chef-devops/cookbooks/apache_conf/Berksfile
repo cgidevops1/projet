@@ -1,6 +1,9 @@
 
 cookbook 'modjk', path: '../modjk/'
 cookbook 'apache', path: '../apache/'
+cookbook 'devops_tomcat', path: '../devops_tomcat'
+cookbook 'tomcat-config', path: '../tomcat-config'
+cookbook 'mysql-cookbook', path: '../mysql-cookbook'
 
 source 'https://supermarket.chef.io'
 

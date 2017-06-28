@@ -4,14 +4,18 @@
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
 # configuration du fichier httpd.conf
-template '/etc/httpd/conf.d/mod_jk.conf' do
+template '/etc/httpd/conf.modules.d/mod_jk.conf' do
   source 'mod_jk.conf.erb'
   owner 'root'
   group 'root'
   mode 00644
 end
 
+<<<<<<< HEAD
 template '/etc/httpd/conf.d/workers.properties' do
+=======
+template '/etc/httpd/conf/workers.properties' do
+>>>>>>> connectApache
   variables tomcatIP: '192.168.20.24', tomcatPort: '8009'
   source 'workers.properties.erb'
   owner 'root'
