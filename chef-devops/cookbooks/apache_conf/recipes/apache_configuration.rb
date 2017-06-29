@@ -42,6 +42,17 @@ end
    action :nothing
  end
 
+ execute 'disable_selinux_on_boot' do
+   command "sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux"
+   action :nothing
+ end
+
+ execute "disable_selinux" do
+   command "setenforce 0"
+   action :run
+   notifies :run, "execute[disable_selinux_on_boot]", :before
+ end
+
 directory '/var/log/modjk' do
   owner 'apache'
   group 'apache'
@@ -62,6 +73,11 @@ file '/var/log/modjk/mod_jk.log' do
   group 'apache'
   mode 00644
   action :create
+end
+
+execute 'set' do
+  command 'command'
+  action :run
 end
 
 service 'httpd' do
