@@ -9,7 +9,7 @@
 
   },
   "chef_type": "role",
-  "run_list": [
+  "run_list": ["apache_conf::default"
 
   ],
   "env_run_lists": {
