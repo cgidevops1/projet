@@ -73,11 +73,11 @@ control 'Apache_configuration' do
     it { should exist }
   end
 
-  describe file('/var/log/httpd/mod_jk.shm') do
+  describe file('/var/log/modjk/mod_jk.shm') do
     it { should exist }
   end
 
-  describe file('/var/log/httpd/mod_jk.log') do
+  describe file('/var/log/modjk/mod_jk.log') do
     it { should exist }
   end
 

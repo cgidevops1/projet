@@ -12,7 +12,7 @@ template '/etc/httpd/conf.modules.d/mod_jk.conf' do
 end
 
 template '/etc/httpd/conf/workers.properties' do
-  variables tomcatIP: '172.0.0.1', tomcatPort: '8009'
+  variables tomcatIP: '192.168.20.24', tomcatPort: '8009'
   source 'workers.properties.erb'
   owner 'root'
   group 'root'
@@ -31,16 +31,29 @@ end
    action :nothing
  end
 
-file '/var/log/httpd/mod_jk.shm' do
-  owner 'www-data'
-  group 'www-data'
+directory '/var/log/modjk' do
+  owner 'apache'
+  group 'apache'
   mode 00755
+  recursive true
   action :create
 end
 
-file '/var/log/httpd/mod_jk.log' do
-  owner 'www-data'
-  group 'www-data'
-  mode 00755
+file '/var/log/modjk/mod_jk.shm' do
+  owner 'apache'
+  group 'apache'
+  mode 00644
   action :create
+end
+
+file '/var/log/modjk/mod_jk.log' do
+  owner 'apache'
+  group 'apache'
+  mode 00644
+  action :create
+end
+
+service 'httpd' do
+  supports :status => true
+  action [ :enable, :restart ]
 end

@@ -1,7 +1,7 @@
 LoadModule jk_module  /etc/httpd/modules/mod_jk.so
 JkWorkersFile /etc/httpd/conf/workers.properties
-JkShmFile     /var/log/httpd/mod_jk.shm
-JkLogFile     /var/log/httpd/mod_jk.log
+JkShmFile     /var/log/modjk/mod_jk.shm
+JkLogFile     /var/log/modjk/mod_jk.log
 JkLogLevel    info
 JkLogStampFormat "[%a %b %d %H:%M:%S %Y] "
 
