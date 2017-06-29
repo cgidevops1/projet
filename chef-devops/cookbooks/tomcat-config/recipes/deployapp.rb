@@ -1,3 +1,14 @@
+dbservers=search(:node,'role:DB',:filter_result => { 'IP' => ['ipaddress']})
+
+if defined?(dbservers) && !dbservers.empty? then
+  dbserver=dbservers[0]['IP']
+else
+  dbserver='127.0.0.1'
+end
+
+
+
+
 directory '/tmp/sakilatmp' do
   owner 'root'
   group 'root'
@@ -29,7 +40,7 @@ end
 #Extraire le template context.xml dans l'application deployer dans tomcat
 template '/tmp/sakilatmp/META-INF/context.xml' do
   source 'context.xml.erb'
-  variables({:appuser => 'uSakila',:apppassword => 'pSakila', :appmysqladd => '192.168.20.21',:appbd => 'sakila'})
+  variables({:appuser => 'uSakila',:apppassword => 'pSakila', :appmysqladd => dbserver,:appbd => 'sakila'})
   owner 'tomcat'
   group 'tomcat'
   mode '0644'

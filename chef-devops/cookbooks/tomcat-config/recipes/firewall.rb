@@ -1,6 +1,15 @@
+#Recherche de l'adresse IP du serveur WEB sur le chef server
+
+webservers=search(:node,'role:WEB',:filter_result => { 'IP' => ['ipaddress']})
+
+if defined?(webservers) && !webservers.empty? then
+  webserver=webservers[0]['IP']
+else
+  webserver='127.0.0.1'
+end
+
 #S'assurer que le firewalld est bien ouvert
 service 'firewalld' do
-  #supports status: true
   action [:enable, :start]
 end
 
@@ -21,8 +30,7 @@ end
 #Redirection du port 8009
 firewall_rule 'myapplication' do
   port      8009
-  source    '192.168.20.25/32'
+  source    "#{webserver}/32"
   direction :in
-  #interface 'eth0'
   command    :allow
 end

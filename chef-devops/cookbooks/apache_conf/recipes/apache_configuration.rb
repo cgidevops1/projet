@@ -4,6 +4,16 @@
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
 # configuration du fichier httpd.conf
+
+
+appservers=search(:node,'role:APP',:filter_result => { 'IP' => ['ipaddress']})
+
+if defined?(appservers) && !appservers.empty? then
+  appserver=appservers[0]['IP']
+else
+  appserver='127.0.0.1'
+end
+
 template '/etc/httpd/conf.modules.d/mod_jk.conf' do
   source 'mod_jk.conf.erb'
   owner 'root'
@@ -12,7 +22,7 @@ template '/etc/httpd/conf.modules.d/mod_jk.conf' do
 end
 
 template '/etc/httpd/conf/workers.properties' do
-  variables tomcatIP: '192.168.20.24', tomcatPort: '8009'
+  variables tomcatIP: appserver, tomcatPort: '8009'
   source 'workers.properties.erb'
   owner 'root'
   group 'root'
@@ -23,6 +33,7 @@ end
 service 'firewalld' do
     action [ :enable, :start ]
 end
+
  #configuration du firewall pourle port 80
  execute 'firewall-cmd --zone=public --permanent --add-port=80/tcp' do
    notifies :run,'execute[firewall-cmd --reload]', :delayed
