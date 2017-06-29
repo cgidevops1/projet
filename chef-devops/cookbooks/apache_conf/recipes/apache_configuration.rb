@@ -32,7 +32,7 @@ end
  end
 
  execute 'disable_selinux_on_boot' do
-   command "sed -i '/SELINUX=enforcing/SELINUX=disabled' /etc/sysconfig/selinux"
+   command "sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux"
    action :nothing
  end
 
