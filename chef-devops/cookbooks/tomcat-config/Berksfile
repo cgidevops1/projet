@@ -1,0 +1,6 @@
+source 'https://supermarket.chef.io'
+
+metadata
+
+
+cookbook 'devops_tomcat', path: '../devops_tomcat'

@@ -2,7 +2,8 @@
 driver:
   name: vagrant
   network:
-    - ["private_network", {ip: "192.168.15.21"}]
+    - ["private_network", {ip: "192.168.15.22"}]
+
 
 
 provisioner:
@@ -16,12 +17,12 @@ verifier:
   name: inspec
 
 platforms:
-  - name: centos-7.3
+    - name: centos-7.3
 
 suites:
   - name: default
     run_list:
-      - recipe[mysql-cookbook::default]
+      - recipe[tomcat-config::default]
     verifier:
       inspec_tests:
         - test/smoke/default

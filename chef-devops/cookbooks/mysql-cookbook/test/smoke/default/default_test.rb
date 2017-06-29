@@ -42,3 +42,8 @@ end
 describe command("echo 'show databases;' | mysql -S /var/run/mysql-foo/mysqld.sock --host=localhost --user=root --password='changeMe'") do
   its('stdout') { should match(/mysql/) }
 end
+
+# Test une requete MySQL sur la BD sakila
+describe command("echo 'show tables in sakila;' | mysql -S /var/run/mysql-foo/mysqld.sock --host=localhost --user=uSakila --password='pSakila'") do
+  its('stdout') { should match(/sakila/) }
+end

@@ -1,9 +1,6 @@
 ---
 driver:
   name: vagrant
-  network:
-    - ["private_network", {ip: "192.168.15.21"}]
-
 
 provisioner:
   name: chef_zero
@@ -21,6 +18,23 @@ platforms:
 suites:
   - name: default
     run_list:
+      - recipe[apache_conf::default]
+    verifier:
+      inspec_tests:
+        - test/smoke/default
+    attributes:
+  - name: apachetomcat
+    run_list:
+      - recipe[apache_conf::default]
+      - recipe[tomcat-config::default]
+    verifier:
+      inspec_tests:
+        - test/smoke/default
+    attributes:
+  - name: apachetomcatmysql
+    run_list:
+      - recipe[apache_conf::default]
+      - recipe[tomcat-config::default]
       - recipe[mysql-cookbook::default]
     verifier:
       inspec_tests:
